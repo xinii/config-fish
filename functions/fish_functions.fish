@@ -3,7 +3,7 @@ function fish_functions
 end
 
 function fish_user_key_bindings
-    bind \cj "echo ''; print-current-path; ls -av; counter; commandline -f repaint"
+    bind \cj "echo ''; print_current_directory; ls -av; counter; commandline -f repaint"
 end
 
 function fish_greeting

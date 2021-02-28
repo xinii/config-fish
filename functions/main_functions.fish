@@ -28,10 +28,10 @@ function init_python_path
     set -xU PYTHONPATH $path_pyi:$path_s3
 end
 
-function print_current_path
-    set -l current_path (pwd)
+function print_current_directory
+    set -l current_directory (pwd)
     set -l line '--------------------------------------------------'
-    printf "%s%s\n%s%s%s\n%s" (set_color green) $line (set_color bryellow) "$current_path" (set_color green) $line (set_color normal)
+    printf "%s%s\n%s%s%s\n%s" (set_color green) $line (set_color bryellow) "$current_directory" (set_color green) $line (set_color normal)
 end
 
 function print_path
