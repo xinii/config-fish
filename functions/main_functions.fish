@@ -29,9 +29,7 @@ function init_python_path
 end
 
 function print_current_directory
-    set -l current_directory (pwd)
-    set -l line '--------------------------------------------------'
-    printf "%s%s\n%s%s%s\n%s" (set_color green) $line (set_color bryellow) "$current_directory" (set_color green) $line (set_color normal)
+    printf "%s ≻≻ %s%s%s\n" (set_color green) (set_color bryellow) (pwd) (set_color normal)
 end
 
 function print_path
