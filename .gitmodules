@@ -1,0 +1,3 @@
+[submodule "extensions/python_tools"]
+	path = extensions/python_tools
+	url = https://github.com/xinii/src-python-tool.git

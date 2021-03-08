@@ -92,7 +92,7 @@ function counter
 end
 
 function dict
-    grep $argv[1] ~/.config/fish/utf8.dict -A 1 -wi --color
+    grep $argv[1] ~/.config/fish/extensions/utf8.dict -A 1 -wi --color
 end
 
 function ntfs
