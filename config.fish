@@ -1,6 +1,3 @@
-# configuration file for fish
-# author: Xin Li
-
 if status --is-interactive
     abbr --add --global a "eval (anyenv init - fish | source)"
     abbr --add --global gst "git status"
@@ -19,28 +16,31 @@ if test (count $path_gdv) = 0
 end
 
 if test (count $path_work) = 0
-    set -U path_work $HOME/Documents/work
+    set -U path_work $HOME/work
+end
+
+if test (count $path_key) = 0
+    set -U path_key $HOME/work/keys
 end
 
 alias odv="goto $path_odv"
 alias dbx="goto $path_dbx"
 alias gdv="goto $path_gdv"
 alias work="goto $path_work"
+alias key="goto $path_key"
 
 if test -e $path_odv
-    # path_odv/
     set path_doc $path_odv/doc; alias doc="goto $path_doc"
     set path_note $path_doc/note; alias note="goto $path_note"
-    set path_key $path_odv/tools/keys; alias key="goto $path_key"
-    if test -e $path_key
-	# info and key
-	set domain (cat $path_key/info/domain)
-	set port (cat $path_key/info/port)
-	set option (cat $path_key/info/option)
-	set host_tablet (cat $path_key/info/host_tablet)
-	set port_tablet (cat $path_key/info/port_tablet)
-	set key $path_key/key/key
-    end
+end
+
+if test -e $path_key
+    set domain (cat $path_key/info/domain)
+    set port (cat $path_key/info/port)
+    set option (cat $path_key/info/option)
+    set host_tablet (cat $path_key/info/host_tablet)
+    set port_tablet (cat $path_key/info/port_tablet)
+    set key $path_key/key/key
 end
 
 if test -e $path_anyenv
