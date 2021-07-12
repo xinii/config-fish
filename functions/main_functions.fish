@@ -53,7 +53,7 @@ function goto_site_packages
 end
 
 function exec_py
-    python3 ~/.config/fish/python_tools/$argv[1].py $argv[2]
+    python3 ~/.config/fish/extensions/python_tools/$argv[1].py $argv[2]
 end
 
 function clean
