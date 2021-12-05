@@ -91,6 +91,14 @@ function counter
     printf "%s%s%s\n" (set_color yellow) $line (set_color normal)
 end
 
+function counter_plus
+    counter
+    set -l all_file_num (find . -type f | wc -l)
+    set -l all_subpath_num (math (find . -type d | wc -l) - 1)
+    print_string "Number of files in all subpaths (including hidden files): $all_file_num"
+    print_string "Number of all subpaths (including hidden paths): $all_subpath_num"
+end
+
 function dict
     grep $argv[1] ~/.config/fish/extensions/utf8.dict -A 1 -wi --color
 end
