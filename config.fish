@@ -8,11 +8,7 @@ if test (count $path_odv) = 0
 end
 
 if test (count $path_dbx) = 0
-    set -U path_dbx $HOME/Dropbox/Documents
-end
-
-if test (count $path_gdv) = 0
-    set -U path_gdv $HOME/Google
+    set -U path_dbx $HOME/Dropbox/main
 end
 
 if test (count $path_work) = 0
@@ -25,7 +21,6 @@ end
 
 alias odv="goto $path_odv"
 alias dbx="goto $path_dbx"
-alias gdv="goto $path_gdv"
 alias work="goto $path_work"
 alias key="goto $path_key"
 
