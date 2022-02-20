@@ -60,6 +60,7 @@ alias show_path="exec_py show_path"
 alias srt_player_utf8="exec_py srt_player_utf8"
 # cleaner
 alias rmds="clean .DS_Store"
+alias rmdt="find . -name \"._*\" -size 4k -print0 | xargs -0 rm -v"
 alias rmelc="clean *.elc"
 # simply alias
 alias e="emacs -nw"; alias c="emacsclient -t"
