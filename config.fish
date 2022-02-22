@@ -73,6 +73,9 @@ alias mount_disk="sudo umount /dev/disk3s1; ntfs disk3s1 NTFS; sudo open -a Free
 
 export LS_COLORS='ow=04;34'
 export DISPLAY=:0.0
+if string match -q "*microsoft*" (uname -a)
+    set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+end
 
 if test (uname) = "Darwin"
     # export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
