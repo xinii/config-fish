@@ -72,7 +72,7 @@ alias opensync="sudo open -a FreeFileSync"
 alias mount_disk="sudo umount /dev/disk3s1; ntfs disk3s1 NTFS; sudo open -a FreeFileSync"
 
 export LS_COLORS='ow=04;34'
-export DISPLAY=:0.0
+# export DISPLAY=:0.0
 if string match -q "*microsoft*" (uname -a)
     set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
 end
