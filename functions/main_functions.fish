@@ -118,3 +118,7 @@ function emacsd
         end
     end
 end
+
+function wd2p
+    string join '' '/mnt/' (string lower (echo (string split ':' $argv[1]) | awk '{print $1}')) '/' (echo (string split ':\\' $argv[1]) | awk '{print $2}' | string replace -a '\\' '/')
+end
