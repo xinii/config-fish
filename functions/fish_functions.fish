@@ -2,6 +2,29 @@ function fish_functions
     # print_string "Load fish_functions.fish completed."
 end
 
+function print_current_directory
+    printf "%s ≻≻ %s%s%s\n" (set_color green) (set_color bryellow) (pwd) (set_color normal)
+end
+
+function counter
+    set -l file_num (math (ls -l | grep "^-" | wc -l))
+    set -l hidden_file_num (math (ls -la | grep "^-" | wc -l) - $file_num)
+    set -l dir_num (math (ls -l | grep "^d" | wc -l))
+    set -l hidden_dir_num (math (ls -la | grep "^d" | wc -l) - 2 - $dir_num)
+    set -l line '--------------------------------------------------'
+    print_string "FILE | visible: $file_num | hidden: $hidden_file_num"
+    print_string "PATH | visible: $dir_num | hidden: $hidden_dir_num"
+    printf "%s%s%s\n" (set_color yellow) $line (set_color normal)
+end
+
+function counter_plus
+    counter
+    set -l all_file_num (find . -type f | wc -l)
+    set -l all_subpath_num (math (find . -type d | wc -l) - 1)
+    print_string "Number of files in all subpaths (including hidden files): $all_file_num"
+    print_string "Number of all subpaths (including hidden paths): $all_subpath_num"
+end
+
 function fish_user_key_bindings
     bind \cj "echo ''; print_current_directory; ls -av; counter; commandline -f repaint"
 end

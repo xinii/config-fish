@@ -28,13 +28,29 @@ function init_python_path
     set -xU PYTHONPATH $path_pyi:$path_s3
 end
 
-function print_current_directory
-    printf "%s ≻≻ %s%s%s\n" (set_color green) (set_color bryellow) (pwd) (set_color normal)
-end
-
-function print_path
-    for i in (seq (count $PATH))
-        echo "[$i] $PATH[$i]"
+function show
+    if test (count $argv) = 1
+        switch $argv[1]
+	    case path
+                for i in (seq (count $PATH))
+                    echo "[$i] $PATH[$i]"
+                end
+            case repo
+                for i in (ls)
+                    cd $i
+                    echo -e (set_color yellow) "\n---" (pwd) "---" (set_color normal)
+                    git status
+                    cd ..
+                end
+            case ppa
+                grep -r --include '*.list' '^deb ' /etc/apt/sources.list /etc/apt/sources.list.d/
+            case ppa-lite
+                grep -r --include '*.list' '^deb ' /etc/apt/sources.list*
+            case ppa-simple
+                grep -r --include '*.list' '^deb ' /etc/apt/ | sed -re 's/^\/etc\/apt\/sources\.list((\.d\/)?|(:)?)//' -e 's/(.*\.list):/\[\1\] /' -e 's/deb http:\/\/ppa.launchpad.net\/(.*?)\/ubuntu .*/ppa:\1/'
+            case ppa-cache
+                apt-cache policy | grep http | awk '{print $2" "$3}' | sort -u
+        end
     end
 end
 
@@ -78,25 +94,6 @@ function clean_tex
 	set -l file_to_be_del *.$i
 	rm -fv $file_to_be_del
     end
-end
-
-function counter
-    set -l file_num (math (ls -l | grep "^-" | wc -l))
-    set -l hidden_file_num (math (ls -la | grep "^-" | wc -l) - $file_num)
-    set -l dir_num (math (ls -l | grep "^d" | wc -l))
-    set -l hidden_dir_num (math (ls -la | grep "^d" | wc -l) - 2 - $dir_num)
-    set -l line '--------------------------------------------------'
-    print_string "FILE | visible: $file_num | hidden: $hidden_file_num"
-    print_string "PATH | visible: $dir_num | hidden: $hidden_dir_num"
-    printf "%s%s%s\n" (set_color yellow) $line (set_color normal)
-end
-
-function counter_plus
-    counter
-    set -l all_file_num (find . -type f | wc -l)
-    set -l all_subpath_num (math (find . -type d | wc -l) - 1)
-    print_string "Number of files in all subpaths (including hidden files): $all_file_num"
-    print_string "Number of all subpaths (including hidden paths): $all_subpath_num"
 end
 
 function dict
