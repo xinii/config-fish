@@ -1,0 +1,165 @@
+* Configuration of Fish Shell
+
+** Usage
+
+#+begin_src bash
+  git clone https://github.com/xinii/config-fish.git ~/.config/fish
+  sudo apt install fish
+  chsh -s /usr/bin/fish
+  # relogin
+#+end_src
+
+** Features
+
+*** Check PATH environment variable
+
+**** Command to use
+
+#+begin_src fish
+  show path
+#+end_src
+
+**** Example of output
+
+#+begin_example
+  [1] /home/username/.local/bin
+  [2] /home/username/.anyenv/bin
+  [3] /usr/local/sbin
+  [4] /usr/local/bin
+  [5] /usr/sbin
+  [6] /usr/bin
+  [7] /sbin
+  [8] /bin
+  [9] /usr/games
+  [10] /usr/local/games
+  [11] /snap/bin
+#+end_example
+
+*** Show status of repositores
+
+**** Command to use
+
+#+begin_src fish
+  cd /path/to/repositories
+  show repo
+#+end_src
+
+**** Example of output
+
+#+begin_example
+  --- /path/to/repositories/repo-1-name ---
+  ブランチ main
+  Your branch is up to date with 'origin/main'.
+
+  Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+              modified:   README.org
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+
+  --- /path/to/repositories/repo-2-name ---
+  ブランチ master
+  Your branch is up to date with 'origin/master'.
+
+  nothing to commit, working tree clean
+
+  --- /path/to/repositories/repo-3-name ---
+  ブランチ main
+  Your branch is up to date with 'origin/main'.
+
+  nothing to commit, working tree clean
+#+end_example
+
+*** Show PPA
+
+**** Command to use
+
+#+begin_src fish
+  show ppa # also try show ppa-lite; show ppa-simple; show ppa-cache;
+#+end_src
+
+**** Example of output
+
+#+begin_example
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal main restricted
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal universe
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal-updates universe
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal multiverse
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal-updates multiverse
+  /etc/apt/sources.list:deb http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
+  /etc/apt/sources.list:deb http://security.ubuntu.com/ubuntu/ focal-security main restricted
+  /etc/apt/sources.list:deb http://security.ubuntu.com/ubuntu/ focal-security universe
+  /etc/apt/sources.list:deb http://security.ubuntu.com/ubuntu/ focal-security multiverse
+  /etc/apt/sources.list.d/docker.list:deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu focal stable
+#+end_example
+
+*** Show details for current path
+
+**** How to use
+
+Just press ~Ctrl~ + ~j~ in anywhere.
+
+**** Example of output
+
+#+begin_example
+  ./  ../  .hidden  .hidden-folder/  normal-file  normal-folder/
+  === FILE | visible: 1 | hidden: 1 ===
+  === PATH | visible: 1 | hidden: 1 ===
+  --------------------------------------------------
+#+end_example
+
+*** A compact en-ja ja-en dictionary
+
+**** How to use
+
+#+begin_src fish
+  dict something
+  dict なにか
+#+end_src
+
+**** Example of output
+
+#+begin_example
+  --
+  domain
+  領地,領土,範囲,変域,統治地域,領域,分野,所有地
+  domain of definition
+  定義域
+  --
+  magnetic domain
+  磁区
+  magnetic domain wall
+  磁壁
+  --
+#+end_example
+
+** Some of Alias
+
+| Alias          | Command to run                                               |
+|----------------+--------------------------------------------------------------|
+| ~a~            | ~eval (anyenv init - fish \vert source)~                     |
+| ~c~            | ~emacsclient -t~                                             |
+| ~clean_tex~    | (Remove TeX temporary files)                                 |
+| ~d~            | ~du -csh~                                                    |
+| ~da~           | ~du -hd 1 \vert sort -h~                                     |
+| ~e~            | ~emacs -nw~                                                  |
+| ~emacsd start~ | ~emacs --daemon~                                             |
+| ~emacsd stop~  | ~emacsclient -e '(kill-emacs)'~                              |
+| ~exe~          | ~exec $SHELL -l~                                             |
+| ~gst~          | ~git status~                                                 |
+| ~l~            | ~ls -avhl~                                                   |
+| ~p~            | ~python~                                                     |
+| ~rmds~         | ~clean .DS_Store~                                            |
+| ~rmdt~         | ~find . -name \"._*\" -size 4k -print0 \vert xargs -0 rm -v~ |
+| ~rmelc~        | ~clean *.elc~                                                |
+| ~t~            | ~tmux~                                                       |
+| ~wd2p~         | (Windows directory path to WSL2 path)                        |
+
+** Customized universe environment variables 
+
+#+begin_src fish
+  set -Ux VIRIABLE_NAME value
+  set -U fish_user_paths /path/to/customized/bin $fish_user_paths
+#+end_src

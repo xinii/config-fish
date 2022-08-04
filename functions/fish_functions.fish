@@ -37,9 +37,9 @@ function fish_greeting
     set -l pc_host_name (uname -n)
     set -l time_now (date)
     if command -sq figlet
-        set logo (figlet "xinii.org")
+        set logo (figlet "MemoPixel")
     else
-        set logo (echo "xinii.org")
+        set logo (echo "memopixel.com")
     end
     set -l line '--------------------------------------------------'
     printf '%s\n' (set_color green) $line (set_color yellow) $logo (set_color green) $line
