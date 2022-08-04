@@ -157,7 +157,7 @@ Just press ~Ctrl~ + ~j~ in anywhere.
 | ~t~            | ~tmux~                                                       |
 | ~wd2p~         | (Windows directory path to WSL2 path)                        |
 
-** Customized universe environment variables 
+** Customized universal environment variables 
 
 #+begin_src fish
   set -Ux VIRIABLE_NAME value
