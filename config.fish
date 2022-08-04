@@ -75,6 +75,7 @@ export LS_COLORS='ow=04;34'
 # export DISPLAY=:0.0
 if string match -q "*microsoft*" (uname -a)
     set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
+    set -x PULSE_SERVER tcp:(grep nameserver /etc/resolv.conf | awk '{print $2}')
 end
 
 if test (uname) = "Darwin"
