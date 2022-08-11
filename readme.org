@@ -16,7 +16,7 @@
 **** Command to use
 
 #+begin_src fish
-  show path
+  list path
 #+end_src
 
 **** Example of output
@@ -35,13 +35,13 @@
   [11] /snap/bin
 #+end_example
 
-*** Show status of repositores
+*** List status of repositores
 
 **** Command to use
 
 #+begin_src fish
   cd /path/to/repositories
-  show repo
+  list repo
 #+end_src
 
 **** Example of output
@@ -71,12 +71,12 @@
   nothing to commit, working tree clean
 #+end_example
 
-*** Show PPA
+*** List PPA
 
 **** Command to use
 
 #+begin_src fish
-  show ppa # also try show ppa-lite; show ppa-simple; show ppa-cache;
+  list ppa # --lite --simple --cache
 #+end_src
 
 **** Example of output
