@@ -38,8 +38,15 @@ function list
             case repo
                 for i in (ls)
                     cd $i
-                    echo -e (set_color yellow) "\n---" (pwd) "---" (set_color normal)
-                    git status
+                    # echo -e (set_color yellow) "\n---" (pwd) "---" (set_color normal)
+                    print_string (pwd)
+                    if contains -- "-v" $argv
+                        git remote -v
+                    else if contains -- "--short" $argv; or contains -- "-s" $argv
+                        git status -s
+                    else
+                        git status
+                    end
                     cd ..
                 end
             case ppa
