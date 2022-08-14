@@ -4,6 +4,7 @@
 
 #+begin_src bash
   git clone https://github.com/xinii/config-fish.git ~/.config/fish
+  mv ~/.config/fish/variables ~/.config/fish/fish_variables # option
   sudo apt install fish
   chsh -s /usr/bin/fish
   # relogin
