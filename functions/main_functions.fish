@@ -152,5 +152,5 @@ function emacsd
 end
 
 function wd2p
-    string join '' '/mnt/' (string lower (echo (string split ':' $argv[1]) | awk '{print $1}')) '/' (echo (string split ':\\' $argv[1]) | awk '{print $2}' | string replace -a '\\' '/')
+    string join '' '/mnt/' (string lower (echo (string split ':' $argv[1]) | awk '{print $1}')) '/' (echo (string split ':\\' $argv[1]) | awk '{ first = $1; $1 = ""; gsub(/^ /, ""); print $0 }' | string replace -a '\\' '/')
 end

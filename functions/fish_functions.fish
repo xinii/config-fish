@@ -51,3 +51,7 @@ function fish_greeting
     printf '%s%s%s%s\n' (set_color green) 'Login time: ' (set_color yellow) $time_now
     printf '%s%s%s\n' (set_color green) $line (set_color normal)
 end
+
+function my_hist --on-event fish_preexec --description "Track fish history in file"
+    echo $argv \# (date "+%Y-%m-%d %H:%M:%S") >> ~/.fish_history
+end
