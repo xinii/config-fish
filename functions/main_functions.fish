@@ -36,7 +36,7 @@ function list
                     echo "[$i] $PATH[$i]"
                 end
             case repo
-                for i in (ls)
+                for i in (find . -mindepth 1 -maxdepth 1 -type d)
                     cd $i
                     # echo -e (set_color yellow) "\n---" (pwd) "---" (set_color normal)
                     print_string (pwd)
