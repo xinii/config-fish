@@ -36,7 +36,16 @@ function list
                     echo "[$i] $PATH[$i]"
                 end
             case repo
-                for i in (find . -mindepth 1 -maxdepth 1 -type d)
+                if contains -- "--all" $argv; or contains -- "-a" $argv
+                    set repo_dirs (find . -mindepth 1 -maxdepth 1 -type d)
+                else
+                    for i in (find . -mindepth 1 -maxdepth 1 -type d)
+                        if test -e $i/.git
+                            set repo_dirs $i $repo_dirs
+                        end
+                    end
+                end
+                for i in $repo_dirs
                     cd $i
                     # echo -e (set_color yellow) "\n---" (pwd) "---" (set_color normal)
                     print_string (pwd)
