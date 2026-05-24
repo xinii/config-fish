@@ -1,5 +1,6 @@
 if status --is-interactive
     abbr --add --global a "eval (anyenv init - fish | source)"
+    abbr --add --global an "source (anyenv init - fish | awk 'NR==10 && /nodenv\/bin/ { next } { print }' | psub)"
     abbr --add --global gst "git status"
 end
 
@@ -63,7 +64,7 @@ alias rmds="clean .DS_Store"
 alias rmdt="find . -name \"._*\" -size 4k -print0 | xargs -0 rm -v"
 alias rmelc="clean *.elc"
 # simply alias
-alias e="emacs -nw"; alias c="emacsclient -t"
+alias e="emacs -nw"; alias s="emacsclient -t"; alias c="emacsclient -c -n"
 alias l="ls -avhl"; alias p="python"; alias t="tmux";
 alias d="du -csh"; alias da="du -hd 1 | sort -h"
 alias ..="goto .."; alias exe="exec $SHELL -l"
